@@ -39,7 +39,9 @@ class LoginScreen extends StatelessWidget {
                 )
             ),
             TextButton(
-                onPressed: () {}, 
+                onPressed: () {
+                  Navigator.pushNamed(context, '/signup');
+                },
                 child: Text('新規登録はこちら')
             )
           ],

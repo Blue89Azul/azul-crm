@@ -1,4 +1,5 @@
 import 'package:azul_crm/features/auth/screens/login_screen.dart';
+import 'package:azul_crm/features/auth/screens/signup_screen.dart';
 import 'package:azul_crm/theme/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,9 @@ void main() async {
       title: 'Azul CRM',
       theme: AppTheme.lightTheme,
       home: const LoginScreen(),
+      routes: <String, WidgetBuilder> {
+        '/signup': (BuildContext context) => SignUpScreen(),
+      },
     ),
   );
 }
