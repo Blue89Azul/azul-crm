@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "878029290130",
+    "project_id": "dev-azul-crm",
+    "storage_bucket": "dev-azul-crm.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878029290130:android:a0af35579825d99f29444b",
+        "android_client_info": {
+          "package_name": "com.example.azul_crm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLNmLs8f6zJMLmEBFdEfZlm8CrcXxkVdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
