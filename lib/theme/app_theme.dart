@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'app_color.dart';
 
 class AppTheme {
   static const ColorScheme colorScheme = ColorScheme(
     brightness: Brightness.light,
-    primary: Color(0xFF00838F),
+    primary: AppColor.primaryBlue,
     // 深いティール
     onPrimary: Colors.white,
     secondary: Color(0xFF4DD0E1),
@@ -11,7 +12,7 @@ class AppTheme {
     onSecondary: Colors.black,
     error: Color(0xFFE53935),
     onError: Colors.white,
-    surface: Colors.white,
+    surface: AppColor.surface,
     onSurface: Color(0xFF1F2937),
   );
 
