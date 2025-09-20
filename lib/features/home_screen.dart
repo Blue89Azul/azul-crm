@@ -1,4 +1,5 @@
 import 'package:azul_crm/features/dashboard/screens/dashboard_view.dart';
+import 'package:azul_crm/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Dashbord', style: AppTextStyle.heading1,)),
       body: <Widget>[
         DashBoardView(),
         Center(child: Text('CustomerPage')),
