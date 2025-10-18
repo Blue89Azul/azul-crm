@@ -10,11 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # Firebase
-  firebase_core: ^4.0.0
-  firebase_auth: ^6.0.0
-
   # Font
   google_fonts: ^6.3.1
 
