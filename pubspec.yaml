@@ -10,22 +10,36 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # Font
+
+  # --- UI ---
   google_fonts: ^6.3.1
-
-  # Bloc
-  flutter_bloc: ^9.1.1
-
-  cupertino_icons: ^1.0.8
   flutter_svg: ^2.2.0
-  go_router: ^16.2.5
-  equatable: ^2.0.7
-  dartz: ^0.10.1
-  get_it: ^8.2.0
   fluttertoast: ^9.0.0
+  cupertino_icons: ^1.0.8
+
+# --- Navigation | State ---
+  go_router: ^16.2.5
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
+
+# --- DI ---
+  get_it: ^8.2.0
+  dartz: ^0.10.1
+
+# --- Network | Model ---
+  dio: ^5.9.0
+  json_annotation: ^4.9.0
+  freezed_annotation: ^3.1.0
+
 
 dev_dependencies:
-  bloc_lint: ^0.2.1
+  bloc_lint: ^0.3.2
+
+# --- Code Generation ---
+  build_runner: ^2.10.0
+  json_serializable: ^6.11.1
+  freezed: ^3.2.3
+
   flutter_test:
     sdk: flutter
 
