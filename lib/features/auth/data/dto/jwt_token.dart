@@ -7,8 +7,8 @@ part 'jwt_token.g.dart';
 abstract class JwtToken with _$JwtToken {
   const factory JwtToken({
     required String token,
-    @JsonKey(name: 'token_type') required String tokenType,
-    @JsonKey(name: 'expires_in') required int expiresIn,
+    required String tokenType,
+    required int expiresIn,
   }) = _JwtToken;
 
   factory JwtToken.fromJson(Map<String, dynamic> json) =>
