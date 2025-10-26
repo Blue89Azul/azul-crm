@@ -21,7 +21,7 @@ final appRouter = GoRouter(
     GoRoute(
       name: AppRouteNames.signup,
       path: AppRoutePaths.signup,
-      builder: (context, state) => SignUpScreen(),
+      builder: (context, state) => SignupScreen(),
     ),
     GoRoute(
       name: AppRouteNames.login,
