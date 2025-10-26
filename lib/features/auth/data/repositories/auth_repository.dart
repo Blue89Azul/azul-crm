@@ -1,7 +1,7 @@
 import 'package:azul_crm/core/network/app_api_client.dart';
+import 'package:azul_crm/features/auth/data/dto/jwt_token.dart';
 import 'package:azul_crm/shared/roles/app_roles.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'auth_repository_interface.dart';
 
 class AuthRepository implements AuthRepositoryInterface {
@@ -9,9 +9,8 @@ class AuthRepository implements AuthRepositoryInterface {
 
   AuthRepository(this._apiClient);
 
-  // JwtDTOを返す
   @override
-  Future<Either<String, Map<String, dynamic>>> signup(
+  Future<Either<String, JwtToken>> signup(
     String email,
     String password,
     AppRole role,
@@ -25,8 +24,8 @@ class AuthRepository implements AuthRepositoryInterface {
       };
 
       var result = await _apiClient.post('/signup', data: requestData);
-      print(result);
-      return right(result);
+
+      return right(JwtToken.fromJson(result));
     } catch (e) {
       return left(e.toString());
     }
