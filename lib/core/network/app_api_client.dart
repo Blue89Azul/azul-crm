@@ -60,6 +60,7 @@ class AppApiClient {
 
   Future<Map<String, dynamic>> post(
     String path, {
+    required Object data,
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
@@ -67,6 +68,7 @@ class AppApiClient {
   }) async {
     try {
       final response = await _dio.post(
+        data: data,
         path,
         queryParameters: queryParameters,
         options: options,
