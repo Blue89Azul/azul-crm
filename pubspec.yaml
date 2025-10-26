@@ -41,7 +41,7 @@ dev_dependencies:
 # --- Code Generation ---
   build_runner: ^2.10.0
   json_serializable: ^6.11.1
-  freezed: ^3.2.3
+  freezed: ^3.1.0
 
   flutter_test:
     sdk: flutter
