@@ -6,8 +6,6 @@ import 'package:azul_crm/features/auth/data/repositories/jwt_repository_interfac
 import 'package:azul_crm/features/auth/domains/usecases/signup_usecase.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../storage/app_local_storage.dart';
-
 
 Future<void> initAuthModule(GetIt injector) async {
   // Repositories
