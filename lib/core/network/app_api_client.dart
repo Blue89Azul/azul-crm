@@ -7,7 +7,7 @@ class AppApiClient {
 
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: "https://localhost/api", // これを後ほど変更
+      baseUrl: "http://localhost/api", // これを後ほど変更
       connectTimeout: const Duration(seconds: 60),
       receiveTimeout: const Duration(seconds: 60),
       responseType: ResponseType.json,
