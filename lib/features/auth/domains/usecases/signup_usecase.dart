@@ -13,11 +13,14 @@ class SignupUseCase {
     if (email.isEmpty || password.isEmpty) {
       return left('Email and password are required');
     }
+    final result = await _authRepository.signup(email, password, role);
 
-    var token = await _authRepository.signup(email, password, role);
-    await _jwtRepository.saveJwt(token as String);
+    if(result.isLeft()) {
+      return result.map((_){});
+    }
 
-    return right(null);
+    final token = result.getOrElse(() => throw Exception('Failed to get JWT token'));
+    return await _jwtRepository.saveToken(token);
   }
 }
 
