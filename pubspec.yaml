@@ -34,6 +34,8 @@ dependencies:
 # --- Local Storage ---
   flutter_secure_storage: ^9.2.4
 
+# --- Error Handling ---
+  logger: ^2.6.2
 
 dev_dependencies:
   bloc_lint: ^0.3.2
