@@ -12,7 +12,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     on<SignupSubmitted>((event, emit) async {
       emit(SignupLoading());
 
-      final result = await _signupUseCase.handle(event.email, event.password, AppRole.admin);
+      final result = await _signupUseCase(event.email, event.password, AppRole.admin);
 
       result.fold(
           (errorMessage) => emit(SignupFailure(errorMessage)),

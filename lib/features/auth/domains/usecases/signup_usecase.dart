@@ -9,7 +9,7 @@ class SignupUseCase {
 
   SignupUseCase(this._authRepository, this._jwtRepository);
 
-  Future<Either<String, void>> handle(String email, String password, AppRole role) async {
+  Future<Either<String, void>> call(String email, String password, AppRole role) async {
     if (email.isEmpty || password.isEmpty) {
       return left('Email and password are required');
     }
