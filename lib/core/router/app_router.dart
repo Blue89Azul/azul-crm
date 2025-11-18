@@ -32,6 +32,11 @@ final appRouter = GoRouter(
       name: AppRouteNames.choiceRole,
       path: AppRoutePaths.choiceRole,
       builder: (context, state) => ChoiceRoleScreen(),
+    ),
+    GoRoute(
+      name: AppRouteNames.myPage,
+      path: AppRoutePaths.myPage,
+      builder: (context, state) => PermissionManagementScreen(),
     )
   ]
 );
