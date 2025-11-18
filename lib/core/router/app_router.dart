@@ -1,7 +1,8 @@
 import 'package:azul_crm/features/auth/screens/choice_role_screen.dart';
 import 'package:azul_crm/features/auth/screens/login_screen.dart';
 import 'package:azul_crm/features/auth/screens/signup_screen.dart';
-import 'package:azul_crm/features/dashboard/screens/dashboard_view.dart';
+import 'package:azul_crm/features/home_screen.dart';
+import 'package:azul_crm/features/my_page/presentation/screens/permission_management_screen.dart';
 import 'package:azul_crm/features/welcome_screen.dart';
 import 'package:go_router/go_router.dart';
 
