@@ -32,5 +32,3 @@ class AuthRepository implements AuthRepositoryInterface {
   }
 }
 
-/// _apiClientを引数に渡すときにヘッダーにauthを乗っけるか、無しでもいいかを決めて送りたい。
-///
