@@ -1,18 +1,41 @@
+import 'package:azul_crm/features/auth/data/repositories/jwt_repository_interface.dart';
 import 'package:dio/dio.dart';
 
 class AppApiClient {
-  AppApiClient._();
+  final JwtRepositoryInterface _jwtRepository;
+  late final Dio _dio;
 
-  static final instance = AppApiClient._();
+  AppApiClient(this._jwtRepository) {
+    _dio = Dio(
+      BaseOptions(
+        baseUrl: "http://localhost/api", // これを後ほど変更
+        connectTimeout: const Duration(seconds: 60),
+        receiveTimeout: const Duration(seconds: 60),
+        responseType: ResponseType.json,
+      ),
+    );
 
-  final Dio _dio = Dio(
-    BaseOptions(
-      baseUrl: "http://localhost/api", // これを後ほど変更
-      connectTimeout: const Duration(seconds: 60),
-      receiveTimeout: const Duration(seconds: 60),
-      responseType: ResponseType.json,
-    ),
-  );
+    _dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          final result = await _jwtRepository.getToken();
+          result.fold((_) => null, (token) {
+            if (token == null) {
+              return handler.next(options);
+            }
+            options.headers['Authorization'] = '${token.tokenType} ${token.token}';
+          });
+          return handler.next(options);
+        },
+        onError: (exception, handler) async {
+          if (exception.response?.statusCode == 401) {
+            _jwtRepository.deleteToken();
+          }
+          handler.next(exception);
+        }
+      ),
+    );
+  }
 
   Future<Map<String, dynamic>> get(
     String path, {
