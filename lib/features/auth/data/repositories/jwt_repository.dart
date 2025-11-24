@@ -17,7 +17,37 @@ class JwtRepository implements JwtRepositoryInterface {
       await _storage.write(key: _tokenKey, value: jsonEncode(token.toJson()));
       return right(null);
     } catch (e) {
-     return left(e.toString());
+      return left(e.toString());
     }
+  }
+
+  @override
+  Future<Either<String, void>> deleteToken() async {
+    try {
+      await _storage.delete(key: _tokenKey);
+      return right(null);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, JwtToken?>> getToken() async {
+    try {
+      final token = await _storage.read(key: _tokenKey);
+      final JwtToken jwtToken = JwtToken.fromJson(jsonDecode(token));
+      return right(jwtToken);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<bool> hasToken() async {
+    final result = await getToken();
+    return result.fold(
+          (_) => false,
+          (token) => token != null,
+    );
   }
 }
