@@ -1,3 +1,4 @@
+import 'package:azul_crm/core/storage/app_local_storage.dart';
 import 'package:azul_crm/features/auth/blocs/signup/signup_bloc.dart';
 import 'package:azul_crm/features/auth/data/repositories/auth_repository.dart';
 import 'package:azul_crm/features/auth/data/repositories/auth_repository_interface.dart';
@@ -9,8 +10,13 @@ import 'package:get_it/get_it.dart';
 
 Future<void> initAuthModule(GetIt injector) async {
   // Repositories
-  injector.registerLazySingleton<AuthRepositoryInterface>(() => AuthRepository(injector()));
-  injector.registerLazySingleton<JwtRepositoryInterface>(() => JwtRepository(injector()));
+  injector.registerLazySingleton<AuthRepositoryInterface>(
+    () => AuthRepository(injector()),
+  );
+
+  injector.registerLazySingleton<JwtRepositoryInterface>(
+    () => JwtRepository(injector.get<AppLocalStorage>()),
+  );
 
   // UseCases
   injector.registerFactory(() => SignupUseCase(injector(), injector()));
