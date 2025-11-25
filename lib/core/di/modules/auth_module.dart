@@ -1,0 +1,19 @@
+part of '../injector.dart';
+
+
+Future<void> initAuthModule(GetIt injector) async {
+  // Repositories
+  injector.registerLazySingleton<AuthRepositoryInterface>(
+    () => AuthRepository(injector()),
+  );
+
+  injector.registerLazySingleton<JwtRepositoryInterface>(
+    () => JwtRepository(injector.get<AppLocalStorage>()),
+  );
+
+  // UseCases
+  injector.registerFactory(() => SignupUseCase(injector(), injector()));
+
+  // Blocs
+  injector.registerFactory(() => SignupBloc(injector()));
+}
