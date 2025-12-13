@@ -36,9 +36,10 @@ class InvitationCodeRepository implements InvitationCodeRepositoryInterface {
         queryParameters: {'page': pageNumber},
       );
 
-      final result = fetchedData['data']
-          ?.map((json) => InvitationCode.fromJson(json as Map<String, dynamic>))
-          .toList();
+      final List<InvitationCode> result = [
+        ...?(fetchedData['data'] as List<dynamic>?)?.map((json) =>
+            InvitationCode.fromJson(json as Map<String, dynamic>)),
+      ];
 
       return right(result);
     } catch (e) {
