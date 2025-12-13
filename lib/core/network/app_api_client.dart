@@ -19,20 +19,23 @@ class AppApiClient {
       InterceptorsWrapper(
         onRequest: (options, handler) async {
           final result = await _jwtRepository.getToken();
-          result.fold((_) => null, (token) {
-            if (token == null) {
-              return handler.next(options);
-            }
-            options.headers['Authorization'] = '${token.tokenType} ${token.token}';
-          });
-          return handler.next(options);
+
+          result.fold(
+            (_) {
+              handler.next(options);
+            },
+            (token) {
+              if (token != null) {
+                options.headers['Authorization'] =
+                    '${token.tokenType} ${token.token}';
+              }
+              handler.next(options);
+            },
+          );
         },
         onError: (exception, handler) async {
-          if (exception.response?.statusCode == 401) {
-            _jwtRepository.deleteToken();
-          }
           handler.next(exception);
-        }
+        },
       ),
     );
   }
