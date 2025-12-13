@@ -47,49 +47,48 @@ class _InvitationCodeView extends StatelessWidget {
         final isLoading =
             state.status == InvitationCodeStatus.loading ||
             state.status == InvitationCodeStatus.creating;
-
-        return isLoading
-            ? CircularProgressIndicator()
-            : Column(
-                children: [
-                  SizedBox(height: 18),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _InvitationCodeInfoCounter(
-                          title: 'Logged In',
-                          count: 0,
-                        ),
-                      ),
-                      Expanded(
-                        child: _InvitationCodeInfoCounter(
-                          title: 'Inviting',
-                          count: 0,
-                        ),
-                      ),
-                    ],
+        return Column(
+          children: [
+            SizedBox(height: 18),
+            Row(
+              children: [
+                Expanded(
+                  child: _InvitationCodeInfoCounter(
+                    title: 'Logged In',
+                    count: 0,
                   ),
-                  SizedBox(height: 18),
-
-                  // 発行コードリスト
-                  Expanded(
-                    child: ListView(
-                      children: state.codes.map((InvitationCode code) {
-                        return _InvitationCodeCard(
-                          code: code.code,
-                          issueDate: code.createdAt.toString(),
-                          status: code.redeemedAt != null
-                              ? "logged_in"
-                              : "inviting",
-                        );
-                      }).toList(),
-                    ),
+                ),
+                Expanded(
+                  child: _InvitationCodeInfoCounter(
+                    title: 'Inviting',
+                    count: 0,
                   ),
+                ),
+              ],
+            ),
+            SizedBox(height: 18),
 
-                  // 新規発行ボタン
-                  _CreateNewCodeButton(),
-                ],
-              );
+            // 発行コードリスト
+            if (isLoading) Center(child: CircularProgressIndicator()),
+            if (!isLoading)
+              Expanded(
+                child: ListView(
+                  children: state.codes.map((InvitationCode code) {
+                    return _InvitationCodeCard(
+                      code: code.code,
+                      issueDate: code.createdAt.toString(),
+                      status: code.redeemedAt != null
+                          ? "logged_in"
+                          : "inviting",
+                    );
+                  }).toList(),
+                ),
+              ),
+
+            // 新規発行ボタン
+            _CreateNewCodeButton(),
+          ],
+        );
       },
     );
   }
@@ -102,7 +101,7 @@ class _CreateNewCodeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = injector<InvitationCodeBloc>();
+    final bloc = context.read<InvitationCodeBloc>();
     return FractionallySizedBox(
       widthFactor: 0.9,
       child: FilledButton(
@@ -170,18 +169,25 @@ class _InvitationCodeCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // バッジ
-              AppTag(status, backgroundColor: statusColor),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // バッジ
+                AppTag(status, backgroundColor: statusColor),
 
-              // コード名
-              Text(code, style: AppTextStyle.heading1),
+                // コード名
+                Text(
+                  code,
+                  style: AppTextStyle.bodyLarge.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
 
-              // 発行日時
-              Text('Issue date: $issueDate', style: AppTextStyle.bodyMedium),
-            ],
+                // 発行日時
+                Text('Issue date: $issueDate', style: AppTextStyle.bodyMedium),
+              ],
+            ),
           ),
           FilledButton(onPressed: () {}, child: const Text('Copy')),
         ],
