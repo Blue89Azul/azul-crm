@@ -1,10 +1,10 @@
 import 'package:azul_crm/features/my_page/data/dto/invitation_code.dart';
-import 'package:azul_crm/features/my_page/data/repositories/invitation_code_repository.dart';
+import 'package:azul_crm/features/my_page/data/repositories/invitation_code_repository_interface.dart';
 import 'package:dartz/dartz.dart';
 
 class FetchInvitationCodeListUseCase {
   final int pageNumber;
-  final InvitationCodeRepository _repository;
+  final InvitationCodeRepositoryInterface _repository;
 
   FetchInvitationCodeListUseCase(this._repository, {this.pageNumber = 1});
 
