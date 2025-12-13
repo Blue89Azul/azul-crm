@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:azul_crm/core/di/injector.dart';
 import 'package:azul_crm/features/my_page/blocs/events/invitation_code_event.dart';
 import 'package:azul_crm/features/my_page/blocs/invitation_code_bloc.dart';
@@ -10,7 +8,6 @@ import 'package:azul_crm/shared/widgets/app_tag.dart';
 import 'package:azul_crm/shared/widgets/screen_padding.dart';
 import 'package:azul_crm/theme/app_color.dart';
 import 'package:azul_crm/theme/app_text_style.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
