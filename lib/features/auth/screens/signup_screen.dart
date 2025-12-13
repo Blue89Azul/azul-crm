@@ -43,7 +43,6 @@ class _SignupViewState extends State<_SignupView> {
             return;
           }
           if (state is SignupFailure) {
-            print(state.message);
             AppToast.showError(state.message);
             return;
           }
