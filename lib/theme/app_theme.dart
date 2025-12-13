@@ -5,10 +5,8 @@ class AppTheme {
   static const ColorScheme colorScheme = ColorScheme(
     brightness: Brightness.light,
     primary: AppColor.primaryBlue,
-    // 深いティール
     onPrimary: Colors.white,
     secondary: Color(0xFF4DD0E1),
-    // 明るいティール
     onSecondary: Colors.black,
     error: Color(0xFFE53935),
     onError: Colors.white,
