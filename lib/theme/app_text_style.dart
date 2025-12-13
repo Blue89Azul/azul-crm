@@ -3,6 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app_color.dart';
 
 class AppTextStyle {
+  static TextStyle title = GoogleFonts.poppins(
+    color: AppColor.grayLight,
+    fontSize: 56,
+    fontWeight: FontWeight.bold,
+    height: 1.3,
+  );
+
   // 見出し
   static TextStyle heading1 = GoogleFonts.poppins(
     color: AppColor.grayDark,
