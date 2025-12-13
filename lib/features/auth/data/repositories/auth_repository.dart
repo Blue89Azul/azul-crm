@@ -30,5 +30,17 @@ class AuthRepository implements AuthRepositoryInterface {
       return left(e.toString());
     }
   }
-}
 
+  @override
+  Future<Either<String, JwtToken>> login(String email, String password) async {
+    try {
+      final requestData = {'email': email, 'password': password};
+
+      var result = await _apiClient.post('/login/email', data: requestData);
+
+      return right(JwtToken.fromJson(result));
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+}
