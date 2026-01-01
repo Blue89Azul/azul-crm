@@ -15,7 +15,7 @@ Future<void> initMyPageModule(GetIt injector) async {
   );
 
   // Bloc
-  injector.registerLazySingleton(
+  injector.registerFactory(
     () => InvitationCodeBloc(injector(), injector()),
   );
 }

@@ -10,4 +10,6 @@ abstract interface class JwtRepositoryInterface {
   Future<Either<String, void>> deleteToken();
 
   Future<bool> hasToken();
+
+  Future<bool> isTokenExpired();
 }

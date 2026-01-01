@@ -7,6 +7,8 @@ import 'jwt_repository_interface.dart';
 
 class JwtRepository implements JwtRepositoryInterface {
   static const String _tokenKey = 'jwt';
+  static const String _tokenSavedAt = 'jwt_saved_at';
+
   final AppLocalStorage _storage;
 
   JwtRepository(this._storage);
@@ -14,7 +16,12 @@ class JwtRepository implements JwtRepositoryInterface {
   @override
   Future<Either<String, void>> saveToken(JwtToken token) async {
     try {
-      await _storage.write(key: _tokenKey, value: jsonEncode(token.toJson()));
+      final jsonString = jsonEncode(token.toJson());
+      await _storage.write(key: _tokenKey, value: jsonString);
+      await _storage.write(
+        key: _tokenSavedAt,
+        value: DateTime.now().toIso8601String(),
+      );
       return right(null);
     } catch (e) {
       return left(e.toString());
@@ -35,6 +42,11 @@ class JwtRepository implements JwtRepositoryInterface {
   Future<Either<String, JwtToken?>> getToken() async {
     try {
       final token = await _storage.read(key: _tokenKey);
+
+      if (token == null) {
+        return left('Token not found');
+      }
+
       final JwtToken jwtToken = JwtToken.fromJson(jsonDecode(token));
       return right(jwtToken);
     } catch (e) {
@@ -46,8 +58,35 @@ class JwtRepository implements JwtRepositoryInterface {
   Future<bool> hasToken() async {
     final result = await getToken();
     return result.fold(
-          (_) => false,
-          (token) => token != null,
+      (error) {
+        return false;
+      },
+      (token) {
+        return true;
+      },
     );
+  }
+
+  @override
+  Future<bool> isTokenExpired() async {
+    try {
+      final savedAtStr = await _storage.read(key: _tokenSavedAt);
+      if (savedAtStr == null) {
+        return true;
+      }
+
+      final tokenResult = await getToken();
+      return tokenResult.fold((_) => true, (token) {
+        if (token == null) {
+          return true;
+        }
+
+        final savedAt   = DateTime.parse(savedAtStr);
+        final expiresAt = savedAt.add(Duration(seconds: token.expiresIn));
+        return DateTime.now().isAfter(expiresAt.subtract(Duration(minutes: 1)));
+      });
+    } catch (_) {
+      return true;
+    }
   }
 }
