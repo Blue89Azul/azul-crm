@@ -94,8 +94,8 @@ class AppApiClient {
   }) async {
     try {
       final response = await _dio.post(
-        data: data,
         path,
+        data: data,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
