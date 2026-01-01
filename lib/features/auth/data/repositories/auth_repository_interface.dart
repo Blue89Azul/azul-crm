@@ -5,4 +5,5 @@ import 'package:dartz/dartz.dart';
 abstract interface class AuthRepositoryInterface {
   Future<Either<String, JwtToken>> signup(String email, String password, AppRole role);
   Future<Either<String, JwtToken>> login(String email, String password);
+  Future<Either<String, void>> logout();
 }
