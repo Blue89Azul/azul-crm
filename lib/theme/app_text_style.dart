@@ -10,45 +10,44 @@ class AppTextStyle {
     height: 1.3,
   );
 
-  // 見出し
   static TextStyle heading1 = GoogleFonts.poppins(
     color: AppColor.grayDark,
-    fontSize: 28, // 大画面用タイトル
+    fontSize: 28,
     fontWeight: FontWeight.bold,
     height: 1.3,
   );
   static TextStyle heading2 = GoogleFonts.poppins(
     color: AppColor.grayDark,
-    fontSize: 22, // 画面内セクション見出し
+    fontSize: 22,
     fontWeight: FontWeight.w600,
     height: 1.3,
   );
   static TextStyle heading3 = GoogleFonts.poppins(
     color: AppColor.grayDark,
-    fontSize: 18, // カードタイトルや小見出し
+    fontSize: 18,
     fontWeight: FontWeight.w600,
     height: 1.3,
   );
-  // 本文
+
   static TextStyle bodyLarge = GoogleFonts.inter(
     color: AppColor.grayDark,
-    fontSize: 16, // 一般的な本文
+    fontSize: 16,
     fontWeight: FontWeight.w400,
     height: 1.5,
   );
   static TextStyle bodyMedium = GoogleFonts.inter(
     color: AppColor.grayDark,
-    fontSize: 14, // サブテキスト
+    fontSize: 14,
     fontWeight: FontWeight.w400,
     height: 1.5,
   );
   static TextStyle bodySmall = GoogleFonts.inter(
     color: AppColor.grayDark,
-    fontSize: 12, // 補足・キャプション
+    fontSize: 12,
     fontWeight: FontWeight.w400,
     height: 1.4,
   );
-  // ボタン・ラベル
+  
   static TextStyle button = GoogleFonts.inter(
     fontSize: 16,
     fontWeight: FontWeight.w600,
