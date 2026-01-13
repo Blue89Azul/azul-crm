@@ -4,5 +4,5 @@ part 'login_event.freezed.dart';
 
 @freezed
 sealed class LoginEvent with _$LoginEvent {
-  const factory LoginEvent.submitted(String email, String password) = _Submitted;
+  const factory LoginEvent.submitted(String email, String password, String account) = _Submitted;
 }

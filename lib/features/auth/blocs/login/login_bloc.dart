@@ -13,17 +13,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginEvent>(_login);
   }
 
-  Future<void> _login(event, emit) async {
+  Future<void> _login(LoginEvent event, emit) async {
     emit(LoginState.loading());
-    final result = await _loginUseCase(event.email, event.password);
-
+    final result = await _loginUseCase(event.email, event.password, event.account);
     result.fold(
       (message) {
         emit(LoginState.failure(message));
       },
-      (_) {
+      (result) {
+        final user = result;
+        user.updateLoggedInUser();
+        
         emit(LoginState.success());
-        injector<AppInitBloc>().add(AppInitEvent.appStarted());
+        injector<AppInitBloc>().add(AppInitEvent.authenticationChanged());
       },
     );
   }
