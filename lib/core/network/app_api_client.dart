@@ -1,11 +1,14 @@
+import 'package:azul_crm/core/log/app_logger.dart';
+import 'package:azul_crm/core/storage/app_local_storage.dart';
 import 'package:azul_crm/features/auth/data/repositories/jwt_repository_interface.dart';
 import 'package:dio/dio.dart';
 
 class AppApiClient {
+  final AppLocalStorage _storage;
   final JwtRepositoryInterface _jwtRepository;
   late final Dio _dio;
 
-  AppApiClient(this._jwtRepository) {
+  AppApiClient(this._jwtRepository, this._storage) {
     _dio = Dio(
       BaseOptions(
         baseUrl: "http://localhost/api", // これを後ほど変更
@@ -18,26 +21,36 @@ class AppApiClient {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final result = await _jwtRepository.getToken();
-
-          result.fold(
-            (_) {
-              handler.next(options);
-            },
-            (token) {
-              if (token != null) {
-                options.headers['Authorization'] =
-                    '${token.tokenType} ${token.token}';
-              }
-              handler.next(options);
-            },
-          );
+          await _setJwtTokenIntoHeader(options);
+          await _setAccountIntoHeader(options);
+          handler.next(options);
         },
         onError: (exception, handler) async {
           handler.next(exception);
         },
       ),
     );
+  }
+
+  Future<void> _setJwtTokenIntoHeader(RequestOptions options) async {
+    final result = await _jwtRepository.getToken();
+    result.fold(
+          (_) {},
+          (token) {
+        AppLogger().debug('token: ${token?.token}');
+        if (token != null) {
+          options.headers['Authorization'] =
+          'Bearer ${token.token}';
+        }
+      },
+    );
+  }
+
+  Future<void> _setAccountIntoHeader(RequestOptions options) async {
+    final account = await _storage.read(key: "account");
+    if (account != null) {
+      options.headers['X-Account'] = account;
+    }
   }
 
   Future<Map<String, dynamic>> get(
