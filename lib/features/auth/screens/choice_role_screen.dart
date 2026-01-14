@@ -1,4 +1,5 @@
 import 'package:azul_crm/core/router/app_router.dart';
+import 'package:azul_crm/shared/roles/app_roles.dart';
 import 'package:azul_crm/theme/app_color.dart';
 import 'package:azul_crm/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -33,15 +34,13 @@ class ChoiceRoleScreen extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.all(24.0),
         decoration: BoxDecoration(
-          border: Border.all(color: AppColor.grayLight)
+          border: Border.all(color: AppColor.grayLight),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              // イメージ
-              // テキスト
               Text(title, style: AppTextStyle.heading2),
               Text(description, style: AppTextStyle.bodyMedium),
             ],
@@ -54,7 +53,15 @@ class ChoiceRoleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leadingWidth: 85,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            context.pop();
+          },
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -62,14 +69,14 @@ class ChoiceRoleScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _titlePart(),
-            SizedBox(height: 8,),
+            SizedBox(height: 8),
             Expanded(
               child: _cardButton(
                 'Administrator',
                 description:
                     'For users who create teams, manage all data, and configure system settings.',
                 onTap: () {
-                  context.pushNamed(AppRouteNames.signup);
+                  context.pushNamed(AppRouteNames.signup, extra: AppRole.admin);
                 },
               ),
             ),
@@ -78,7 +85,12 @@ class ChoiceRoleScreen extends StatelessWidget {
                 'Team Member',
                 description:
                     'For users who have an invitation code and perform assigned daily tasks only.',
-                onTap: () {},
+                onTap: () {
+                  context.pushNamed(
+                    AppRouteNames.signup,
+                    extra: AppRole.member,
+                  );
+                },
               ),
             ),
           ],
