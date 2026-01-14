@@ -4,11 +4,11 @@ part of '../injector.dart';
 Future<void> initAuthModule(GetIt injector) async {
   // Repositories
   injector.registerLazySingleton<AuthRepositoryInterface>(
-    () => AuthRepository(injector()),
+    () => AuthRepository(injector(), injector(), injector()),
   );
 
   injector.registerLazySingleton<JwtRepositoryInterface>(
-    () => JwtRepository(injector.get<AppLocalStorage>()),
+    () => JwtRepository(injector()),
   );
 
   // UseCases
