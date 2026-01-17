@@ -1,16 +1,57 @@
-# azul_crm
+# AZUL CRM
 
-A new Flutter project.
+**A simple, powerful CRM for fast-moving startups.**
 
-## Getting Started
+AZUL CRM is a mobile app for startup teams. It helps CEOs and sales members manage customer data and deals anywhere, anytime.
 
-This project is a starting point for a Flutter application.
+## 🌟 Why AZUL CRM?
 
-A few resources to get you started if this is your first Flutter project:
+- **Mobile First:** Fast and easy to use on the go.
+- **Safe & Secure:** Uses a "One Database per Company" design.
+- **Global Ready:** Designed for easy payments and taxes worldwide (via Paddle).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠 Tech Stack
+
+- **Frontend:** Flutter
+- **Backend:** Laravel 12
+- **Database:** MySQL
+- **Payments:** Paddle (Planned)
+
+---
+
+## 🏗 Key Technical Features (The "Why")
+
+### 1. Multi-tenant (Isolated Database)
+
+Each company gets its own database.
+
+- **High Security:** Data is never mixed with other companies.
+- **Scalability:** We can easily move big clients to their own servers.
+
+### 2. Smart Permissions (RBAC)
+
+- **Admin:** Can manage the whole team.
+- **Member:** Can manage customers and deals.
+- **JWT Auth:** Secure and fast login for mobile users.
+
+### 3. Smooth Onboarding (Planned)
+
+A simple 3-step flow to start:
+
+1. **User Info:** Create an account.
+2. **Payment:** Pay via Paddle (Safe & Global).
+3. **Auto-Setup:** The system automatically creates a new database.
+
+---
+
+## ✅ Current Progress
+
+- [x]  **Login System:** Secure JWT Authentication.
+- [x]  **Permission Logic:** Admin and Member roles.
+- [x]  **Multi-tenant Engine:** Smart database switching.
+- [ ]  **On Boarding Process:** Account & payment registration → Multi-tenant setup (In progress)
+- [ ]  **CRM Modules:** Customer & Deal management (In progress).
+
+---
