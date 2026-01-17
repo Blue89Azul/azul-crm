@@ -1,4 +1,4 @@
-# AZUL CRM
+![Logo Image](/readme/logo.png)
 
 **A simple, powerful CRM for fast-moving startups.**
 
