@@ -2,6 +2,9 @@ part of '../injector.dart';
 
 
 Future<void> initAuthModule(GetIt injector) async {
+  // Services
+  injector.registerLazySingleton(() => JwtTokenDecoder());
+
   // Repositories
   injector.registerLazySingleton<AuthRepositoryInterface>(
     () => AuthRepository(injector(), injector(), injector()),
