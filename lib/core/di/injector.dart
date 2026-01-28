@@ -9,6 +9,7 @@ import 'package:azul_crm/features/auth/blocs/signup/signup_bloc.dart';
 import 'package:azul_crm/features/auth/data/repositories/auth_repository.dart';
 import 'package:azul_crm/features/auth/data/repositories/auth_repository_interface.dart';
 import 'package:azul_crm/features/auth/data/repositories/jwt_repository.dart';
+import 'package:azul_crm/features/auth/domains/services/jwt_token_decoder.dart';
 import 'package:azul_crm/features/auth/domains/usecases/login_usecase.dart';
 import 'package:azul_crm/features/auth/domains/usecases/logout_usecase.dart';
 import 'package:azul_crm/features/auth/domains/usecases/signup_usecase.dart';
