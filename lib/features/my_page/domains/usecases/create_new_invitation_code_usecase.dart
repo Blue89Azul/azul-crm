@@ -9,7 +9,7 @@ class CreateNewInvitationCodeUseCase {
   CreateNewInvitationCodeUseCase(this._repository);
 
   Future<Either<String, InvitationCode>> call(AppRole grantedRole) async {
-    final result = await _repository.createNewCode();
+    final result = await _repository.createNewCode(grantedRole);
 
     if (result.isLeft()) {
       return Left(result.toString());
