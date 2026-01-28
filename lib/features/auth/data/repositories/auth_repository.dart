@@ -36,13 +36,13 @@ class AuthRepository implements AuthRepositoryInterface {
       };
 
       var result = await _apiClient.post('/signup', data: requestData);
-      await _storage.write(key: accountKey, value: result['account']);
+      await _storage.write(key: accountKey, value: result['data']['account']);
       return right((
-        JwtToken.fromJson({
-          'token': result['jwt']['token'],
-          'expiresIn': _jwtTokenDecoder.toExpiredAt(result['jwt']['token'])
-        }),
-        User.fromJson(result['user']),
+        JwtToken(
+          token: result['data']['jwt'],
+          expiresIn: _jwtTokenDecoder.toExpiresIn(result['data']['jwt']),
+        ),
+        User.fromJson(result['data']['user']),
       ));
     } catch (e) {
       return left(e.toString());
@@ -63,10 +63,10 @@ class AuthRepository implements AuthRepositoryInterface {
       };
 
       var result = await _apiClient.post('/login', data: requestData);
-      await _storage.write(key: accountKey, value: result['account']);
+      await _storage.write(key: accountKey, value: result['data']['account']);
       return right((
-        JwtToken.fromJson(result['jwt']),
-        User.fromJson(result['user']),
+        JwtToken.fromJson(result['data']['jwt']),
+        User.fromJson(result['data']['user']),
       ));
     } catch (e) {
       return left(e.toString());
