@@ -11,7 +11,7 @@ class AppApiClient {
   AppApiClient(this._jwtRepository, this._storage) {
     _dio = Dio(
       BaseOptions(
-        baseUrl: "http://localhost/api", // これを後ほど変更
+        baseUrl: "http://localhost/api", // Change this later
         connectTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 60),
         responseType: ResponseType.json,
