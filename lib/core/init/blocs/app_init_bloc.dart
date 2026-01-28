@@ -19,13 +19,13 @@ class AppInitBloc extends Bloc<AppInitEvent, AppInitState> {
     add(AppInitEvent.appStarted());
   }
 
-  /// アプリ起動時: 認証チェック + 最低1秒のスプラッシュ表示
+  /// App startup: Authentication check + minimum 1 second splash display
   Future<void> _appStarted(emit) async {
     final startTime = DateTime.now();
     try {
       final isAuthenticated = await _checkIfAuthenticatedUsecase();
       
-      // スプラッシュ画面を最低1秒表示
+      // Display splash screen for at least 1 second
       await _ensureMinimumDuration(startTime);
       
       if (isAuthenticated) {
@@ -34,11 +34,11 @@ class AppInitBloc extends Bloc<AppInitEvent, AppInitState> {
         emit(const AppInitState.ready(AppInitResult.unauthenticated));
       }
     } catch (e) {
-      emit(const AppInitState.error('エラーが発生しました。'));
+      emit(const AppInitState.error('An error has occurred.'));
     }
   }
 
-  /// ログイン/サインアップ後: 認証チェックのみ（即座に更新）
+  /// After login/signup: Authentication check only (update immediately)
   Future<void> _authenticationChanged(emit) async {
     try {
       final isAuthenticated = await _checkIfAuthenticatedUsecase();
@@ -49,7 +49,7 @@ class AppInitBloc extends Bloc<AppInitEvent, AppInitState> {
         emit(const AppInitState.ready(AppInitResult.unauthenticated));
       }
     } catch (e) {
-      emit(const AppInitState.error('エラーが発生しました。'));
+      emit(const AppInitState.error('An error has occurred.'));
     }
   }
 
