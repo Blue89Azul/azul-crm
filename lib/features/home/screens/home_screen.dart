@@ -79,19 +79,19 @@ class _HomeScreenState extends State<HomeScreen> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),
-            label: 'ダッシュボード',
+            label: 'Dashboard',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.supervised_user_circle),
-            label: '顧客',
+            label: 'Customers',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home_work_rounded),
-            label: '会社',
+            label: 'Companies',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.pending_actions),
-            label: '行動',
+            label: 'Actions',
           ),
         ],
       ),
