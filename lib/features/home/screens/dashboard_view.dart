@@ -23,7 +23,7 @@ class DashBoardView extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text('新規顧客', style: AppTextStyle.bodyLarge),
+                    Text('New Customers', style: AppTextStyle.bodyLarge),
                     Text('100', style: AppTextStyle.heading3),
                   ],
                 ),
@@ -39,7 +39,7 @@ class DashBoardView extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text('行動数', style: AppTextStyle.bodyLarge),
+                    Text('Actions', style: AppTextStyle.bodyLarge),
                     Text('100', style: AppTextStyle.heading3),
                   ],
                 ),
@@ -55,7 +55,7 @@ class DashBoardView extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text('売り上げ', style: AppTextStyle.bodyLarge),
+                    Text('Revenue', style: AppTextStyle.bodyLarge),
                     Text('¥1.2M', style: AppTextStyle.heading2),
                   ],
                 ),
@@ -78,13 +78,13 @@ class DashBoardView extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text('新システム導入プロジェクト', style: AppTextStyle.heading3),
-                      AppTag('予定中', backgroundColor: AppColor.hotStates),
+                      Text('New System Implementation Project', style: AppTextStyle.heading3),
+                      AppTag('Scheduled', backgroundColor: AppColor.hotStates),
                     ],
                   ),
                   Text('¥1.000.000', style: AppTextStyle.heading3),
-                  Text('クローズ予定日: 2025/01/01', style: AppTextStyle.bodyMedium),
-                  Text('関連顧客: Taro Yamada', style: AppTextStyle.bodyMedium),
+                  Text('Expected Close Date: 2025/01/01', style: AppTextStyle.bodyMedium),
+                  Text('Related Customer: Taro Yamada', style: AppTextStyle.bodyMedium),
                 ]
               ),
             ),
@@ -99,13 +99,13 @@ class DashBoardView extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text('新システム導入プロジェクト', style: AppTextStyle.heading3),
-                        AppTag('予定中', backgroundColor: AppColor.hotStates),
+                        Text('New System Implementation Project', style: AppTextStyle.heading3),
+                        AppTag('Scheduled', backgroundColor: AppColor.hotStates),
                       ],
                     ),
                     Text('¥1.000.000', style: AppTextStyle.heading3),
-                    Text('クローズ予定日: 2025/01/01', style: AppTextStyle.bodyMedium),
-                    Text('関連顧客: Taro Yamada', style: AppTextStyle.bodyMedium),
+                    Text('Expected Close Date: 2025/01/01', style: AppTextStyle.bodyMedium),
+                    Text('Related Customer: Taro Yamada', style: AppTextStyle.bodyMedium),
                   ]
               ),
             ),
@@ -120,13 +120,13 @@ class DashBoardView extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text('新システム導入プロジェクト', style: AppTextStyle.heading3),
-                        AppTag('予定中', backgroundColor: AppColor.hotStates),
+                        Text('New System Implementation Project', style: AppTextStyle.heading3),
+                        AppTag('Scheduled', backgroundColor: AppColor.hotStates),
                       ],
                     ),
                     Text('¥1.000.000', style: AppTextStyle.heading3),
-                    Text('クローズ予定日: 2025/01/01', style: AppTextStyle.bodyMedium),
-                    Text('関連顧客: Taro Yamada', style: AppTextStyle.bodyMedium),
+                    Text('Expected Close Date: 2025/01/01', style: AppTextStyle.bodyMedium),
+                    Text('Related Customer: Taro Yamada', style: AppTextStyle.bodyMedium),
                   ]
               ),
             ),
