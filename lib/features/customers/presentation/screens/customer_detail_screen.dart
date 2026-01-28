@@ -16,7 +16,7 @@ class CustomerDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // 詳細
+            // Details
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -56,7 +56,7 @@ class CustomerDetailScreen extends StatelessWidget {
                 ),
               ],
             ),
-            // 基本情報
+            // Basic Information
             Container(
               padding: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -76,7 +76,7 @@ class CustomerDetailScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('ステータス', style: AppTextStyle.bodyMedium),
+                      Text('Status', style: AppTextStyle.bodyMedium),
                       Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: 10.0,
@@ -98,23 +98,23 @@ class CustomerDetailScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('更新日時', style: AppTextStyle.bodyMedium),
+                      Text('Updated', style: AppTextStyle.bodyMedium),
                       Text('Sample Company', style: AppTextStyle.bodyMedium),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('最終接触日', style: AppTextStyle.bodyMedium),
+                      Text('Last Contact', style: AppTextStyle.bodyMedium),
                       Text('Sample Company', style: AppTextStyle.bodyMedium),
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('住所', style: AppTextStyle.bodyMedium),
+                      Text('Address', style: AppTextStyle.bodyMedium),
                       Text(
-                        '〒100-0000 東京都 新橋区 新橋1-1-1',
+                        '〒100-0000 Tokyo, Shinbashi 1-1-1',
                         style: AppTextStyle.bodyMedium,
                       ),
                     ],
