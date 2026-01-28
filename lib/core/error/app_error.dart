@@ -1,4 +1,4 @@
-// エラー発生時のレイヤー
+// Layer where error occurred
 enum ErrorLayer { data, domain, presentation }
 
 class AppError implements Exception {
