@@ -3,9 +3,16 @@ import 'package:azul_crm/theme/app_color.dart';
 import 'package:azul_crm/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 
-class DashBoardView extends StatelessWidget {
-  const DashBoardView({super.key});
+class DashBoardScreen extends StatelessWidget {
+  const DashBoardScreen({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return _DashBoardView();
+  }
+}
+
+class _DashBoardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
