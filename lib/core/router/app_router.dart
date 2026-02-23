@@ -6,6 +6,7 @@ import 'package:azul_crm/core/init/blocs/states/app_init_state.dart';
 import 'package:azul_crm/features/auth/screens/choice_role_screen.dart';
 import 'package:azul_crm/features/auth/screens/login_screen.dart';
 import 'package:azul_crm/features/auth/screens/signup_screen.dart';
+import 'package:azul_crm/features/dashboard/screens/dashboard_screen.dart';
 import 'package:azul_crm/features/home/screens/home_screen.dart';
 import 'package:azul_crm/features/my_page/screens/configuration_screen.dart';
 import 'package:azul_crm/features/my_page/screens/invitation_code_screen.dart';
@@ -15,7 +16,7 @@ import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
-  initialLocation: AppRoutePaths.dashboard,
+  initialLocation: AppRoutePaths.home,
   refreshListenable: AppInitChangeNotifier(injector<AppInitBloc>().stream),
   redirect: (context, state) {
     final currentInitState = injector<AppInitBloc>().state;
@@ -27,7 +28,7 @@ final appRouter = GoRouter(
         final isAuthenticated = result == AppInitResult.authenticated;
 
         if (isAuthenticated && isPublic) {
-          return AppRoutePaths.dashboard;
+          return AppRoutePaths.home;
         }
 
         if (!isAuthenticated && !isPublic) {
@@ -40,10 +41,30 @@ final appRouter = GoRouter(
     );
   },
   routes: <RouteBase>[
-    GoRoute(
-      name: AppRouteNames.dashboard,
-      path: AppRoutePaths.dashboard,
-      builder: (context, state) => HomeScreen(),
+    // ButtonNavigationRoutes
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return HomeScreen(navigationShell: navigationShell);
+      },
+      branches: [
+        StatefulShellBranch(
+          routes: <RouteBase>[
+            GoRoute(
+              name: AppRouteNames.dashboard,
+              path: AppRoutePaths.dashboard,
+              builder: (context, state) => DashBoardScreen(),
+            )
+          ]
+        ),
+        StatefulShellBranch(
+          routes: <RouteBase>[
+            GoRoute(
+              name: AppRouteNames.customer,
+              path: AppRoutePaths.customer,
+            )
+          ]
+        )
+      ]
     ),
     GoRoute(
       name: AppRouteNames.welcome,
@@ -95,7 +116,9 @@ class AppInitChangeNotifier extends ChangeNotifier {
 /// Route Names
 abstract class AppRouteNames {
   static const String choiceRole = 'choice_role';
-  static const String dashboard = 'home';
+  static const String home = 'home';
+  static const String dashboard = 'dashboard';
+  static const String customer = 'customer';
   static const String welcome = 'welcome';
   static const String signup = 'signup';
   static const String login = 'login';
@@ -106,7 +129,9 @@ abstract class AppRouteNames {
 /// Route Paths
 abstract class AppRoutePaths {
   static const String choiceRole = '/choice_role';
-  static const String dashboard = '/home';
+  static const String home = '/home';
+  static const String dashboard = '/dashboard';
+  static const String customer = '/customer';
   static const String welcome = '/welcome';
   static const String signup = '/signup';
   static const String login = '/login';
